@@ -4,18 +4,15 @@ import br.com.requeijo.desafio.programas.entity.Familia;
 import br.com.requeijo.desafio.programas.entity.Pessoa;
 import br.com.requeijo.desafio.programas.repository.FamiliaRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class FamiliaRepositoryTest {
 
@@ -28,9 +25,9 @@ public class FamiliaRepositoryTest {
 
         List<Pessoa> dependentes = null;
 
-        Pessoa mae = Pessoa.builder().nome("Cleuza").idade(70).renda(new BigDecimal(0)).build();
-        Pessoa pai = Pessoa.builder().nome("Carlos").idade(75).renda(new BigDecimal(500)).build();
-        Pessoa dependente = Pessoa.builder().nome("Andre").idade(75).renda(new BigDecimal(300)).build();
+        Pessoa mae = Pessoa.builder().nome("Cleuza").dataNascimento(LocalDate.of(1955, 10, 15)).renda(new BigDecimal(0)).build();
+        Pessoa pai = Pessoa.builder().nome("Carlos").dataNascimento(LocalDate.of(1960, 8, 2)).renda(new BigDecimal(500)).build();
+        Pessoa dependente = Pessoa.builder().nome("Andre").dataNascimento(LocalDate.of(1990, 2, 5)).renda(new BigDecimal(300)).build();
         dependentes = new ArrayList<>();
         dependentes.add(dependente);
 
@@ -38,7 +35,6 @@ public class FamiliaRepositoryTest {
         Familia resposta = familiaRepository.save(familia);
 
         Assertions.assertThat(resposta.getId()).isNotNull();
-
 
     }
 

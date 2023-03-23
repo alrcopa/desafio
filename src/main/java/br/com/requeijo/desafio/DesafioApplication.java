@@ -1,9 +1,8 @@
 package br.com.requeijo.desafio;
 
-import br.com.requeijo.desafio.programas.casapopular.service.CasaPopularService;
+import br.com.requeijo.desafio.programas.casapopular.service.CasaPopularServiceImpl;
 import br.com.requeijo.desafio.programas.entity.Familia;
 import br.com.requeijo.desafio.programas.entity.Pessoa;
-import br.com.requeijo.desafio.programas.mapper.FamiliaMapper;
 import br.com.requeijo.desafio.programas.repository.FamiliaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +18,7 @@ import java.util.List;
 public class DesafioApplication {
 
 	@Autowired
-	private CasaPopularService service;
+	private CasaPopularServiceImpl service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DesafioApplication.class, args);

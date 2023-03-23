@@ -23,6 +23,8 @@ public class ProcessaPontuacao {
         pontuacaoTotal += RegraPontuacaoDependente.REGRA_TRES_DEPENDENTES.pontuar(familia);
         pontuacaoTotal += RegraPontuacaoDependente.REGRA_DOIS_DEPENDENTES.pontuar(familia);
 
+
+
         return Pontuacao.builder()
                 .pontos(pontuacaoTotal)
                 .familia(familia)

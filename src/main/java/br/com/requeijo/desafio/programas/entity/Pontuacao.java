@@ -1,10 +1,13 @@
 package br.com.requeijo.desafio.programas.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Pontuacao {
     private Integer pontos;
     private Familia familia;

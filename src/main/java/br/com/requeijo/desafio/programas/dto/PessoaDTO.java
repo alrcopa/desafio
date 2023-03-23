@@ -1,20 +1,21 @@
-package br.com.requeijo.desafio.programas.model;
+package br.com.requeijo.desafio.programas.dto;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 @Data
 @Builder
 @Value
-public class PessoaModel {
+public class PessoaDTO {
 
     Long id;
     String nome;
-    Integer idade;
+    LocalDate dataNascimento;
     BigDecimal renda;
 
 }

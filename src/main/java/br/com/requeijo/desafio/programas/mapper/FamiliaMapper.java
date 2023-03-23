@@ -2,16 +2,15 @@ package br.com.requeijo.desafio.programas.mapper;
 
 import br.com.requeijo.desafio.programas.entity.Familia;
 import br.com.requeijo.desafio.programas.entity.Pessoa;
-import br.com.requeijo.desafio.programas.model.FamiliaModel;
-import br.com.requeijo.desafio.programas.model.PessoaModel;
-import org.springframework.stereotype.Component;
+import br.com.requeijo.desafio.programas.dto.FamiliaDTO;
+import br.com.requeijo.desafio.programas.dto.PessoaDTO;
 
 import java.math.BigDecimal;
 
 public class FamiliaMapper {
 
-    public static FamiliaModel toModel(final Familia familia) {
-        return FamiliaModel.builder()
+    public static FamiliaDTO toModel(final Familia familia) {
+        return FamiliaDTO.builder()
                 .id(familia.getId())
                 .pai(toPessoaDomain(familia.getPai()))
                 .mae(toPessoaDomain(familia.getMae()))
@@ -19,16 +18,16 @@ public class FamiliaMapper {
                 .build();
     }
 
-    private static PessoaModel toPessoaDomain(final Pessoa pessoa) {
-        return PessoaModel.builder()
+    private static PessoaDTO toPessoaDomain(final Pessoa pessoa) {
+        return PessoaDTO.builder()
                 .id(pessoa.getId())
                 .nome(pessoa.getNome())
-                .idade(pessoa.getIdade())
+                .dataNascimento(pessoa.getDataNascimento())
                 .renda(new BigDecimal(pessoa.getRenda().toString()))
                 .build();
     }
 
-    public static Familia toEntity(final FamiliaModel model) {
+    public static Familia toEntity(final FamiliaDTO model) {
         return Familia.builder()
                 .pai(toPessoaDomain(model.getPai()))
                 .mae(toPessoaDomain(model.getMae()))
@@ -36,10 +35,10 @@ public class FamiliaMapper {
                 .build();
     }
 
-    private static Pessoa toPessoaDomain(final PessoaModel model) {
+    private static Pessoa toPessoaDomain(final PessoaDTO model) {
         return Pessoa.builder()
                 .nome(model.getNome())
-                .idade(model.getIdade())
+                .dataNascimento(model.getDataNascimento())
                 .renda(new BigDecimal(model.getRenda().toString()))
                 .build();
     }

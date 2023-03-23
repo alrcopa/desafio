@@ -1,20 +1,22 @@
 package br.com.requeijo.desafio.programas.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Familia {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +25,7 @@ public class Familia {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mae_id")
+    @NotNull
     private Pessoa mae;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -43,7 +46,7 @@ public class Familia {
     }
 
     public Long getQuantidadeDeDependentesMenoresDe18anos() {
-        return this.dependentes.stream().filter(pessoa -> pessoa.getIdade() < 18).count();
+       return this.dependentes.stream().filter(pessoa ->  Period.between(pessoa.getDataNascimento(), LocalDate.now()).getYears() < 18).count();
     }
 
 }
